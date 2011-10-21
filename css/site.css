@@ -1,0 +1,28 @@
+body {
+  font:13px/20px 'Helvetica Neue' sans-serif;
+}
+
+.map {
+  width:578px;
+  height:378px;
+  border:1px solid #222;
+  margin:20px 10px;
+}
+
+div.column {
+  width:600px;
+  float:left;
+}
+
+div.controls {
+  padding:5px 10px;
+}
+
+a {
+  color:black;
+  text-decoration:none;
+}
+
+a:hover {
+  text-decoration:underline;
+}
