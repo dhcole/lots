@@ -5,7 +5,8 @@ function projectWatcher(options) {
 
     w.watch = function() {
         reqwest({
-            url: 'http://localhost:8889/api/Project/geography-class/' + _updated + '?callback=grid',
+            url: 'http://localhost:8889/api/Project/' +
+                options.project + '/' + _updated + '?callback=grid',
             type: 'jsonp',
             jsonpCallback: 'callback',
             success: function(data) {
@@ -44,12 +45,15 @@ function column() {
 
     c.add = function() {
         var mapdiv = toDOM(maptmpl());
-        var map = new mm.Map(mapdiv, undefined, [
+        var map = new mm.Map(mapdiv, undefined, null, [
             new mm.DragHandler(),
             new mm.DoubleClickHandler()
         ]);
+        mapnumber(map);
         maps.push(map);
+        wax.mm.zoomer(map).appendTo(map.parent);
         if (_data) c.update(_data);
+        if (maps.length > 1) map.setCenter(maps[0].getCenter());
         return this;
     };
 
@@ -69,7 +73,7 @@ function column() {
         maps.map(function(m) {
             if (m.parent.parentNode !== div) {
                 div.appendChild(m.parent);
-                m.addCallback('drawn', _.throttle(sync, 500));
+                m.addCallback('panned', _.throttle(sync, 500));
             }
             m.setProvider(new wax.mm.connector(data));
         });
@@ -92,15 +96,18 @@ $(window).load(function() {
         document.body.style.width = (columns.length * 600) + 'px';
     });
 
-    projectWatcher({
-        refresh: function(data) {
-            _data = data;
-            data.tiles = data.tiles.map(function(t) {
-                return 'http://localhost:8889' + t;
-            });
-            columns.map(function(c) {
-                c.update(data);
-            });
-        }
+    $('#start').click(function() {
+        projectWatcher({
+            project: $('#project-name')[0].value,
+            refresh: function(data) {
+                _data = data;
+                data.tiles = data.tiles.map(function(t) {
+                    return 'http://localhost:8889' + t;
+                });
+                columns.map(function(c) {
+                    c.update(data);
+                });
+            }
+        });
     });
 });
