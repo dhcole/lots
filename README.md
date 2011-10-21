@@ -1,4 +1,4 @@
 It's a previewer! Clone it, open `index.html`, and type a project name
 and click 'start'.
 
-![preview](preview.png)
+![preview](https://github.com/tmcw/lots/raw/master/preview.png)
