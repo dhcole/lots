@@ -9,14 +9,15 @@ a.zoomer {
   text-align:center;
   width:25px;
   height:25px;
+  top:60px;
   }
 
   a.zoomin {
-    right:30px;
+    left:25px;
     }
 
   a.zoomout {
-    right:0px;
+    left:0px;
     }
 
   a.zoomdisabled {

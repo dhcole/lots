@@ -3,10 +3,10 @@ body {
 }
 
 .map {
-  width:578px;
-  height:378px;
+  width:588px;
+  height:388px;
   border:1px solid #222;
-  margin:20px 10px;
+  margin:10px 5px;
 }
 
 div.column {
@@ -35,6 +35,7 @@ a:hover {
   margin:0;
   z-index:1000;
   font-size:40px;
+  line-height:50px;
   width:40px;
   background:#000;
   color:#fff;
