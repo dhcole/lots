@@ -1,12 +1,13 @@
-var mm = com.modestmaps, _data;
+var mm = com.modestmaps, _data, n;
 
 function projectWatcher(options) {
     var w = {}, _updated = '';
 
     w.watch = function() {
+        if (!n) return;
         reqwest({
             url: 'http://localhost:8889/api/Project/' +
-                options.project + '/' + _updated + '?callback=grid',
+                n + '/' + _updated + '?callback=grid',
             type: 'jsonp',
             jsonpCallback: 'callback',
             success: function(data) {
@@ -62,6 +63,15 @@ function column() {
         return this;
     };
 
+    c.hash = function() {
+        if (maps.length == 0 || !maps[0].provider) return '';
+        return maps[0].getCenter().lon.toFixed(8) + ',' +
+            maps[0].getCenter().lat.toFixed(8) + ':' +
+            maps.map(function(m) {
+                return m.getZoom();
+            }).join(',');
+    };
+
     function sync(map) {
         maps.map(function(m) {
             if (m !== map) m.setCenter(map.getCenter());
@@ -88,26 +98,44 @@ $(window).load(function() {
     var maptmpl = _.template($('#map').text());
     var columns = [];
 
+    // columns.push(column().add().appendTo($('#container')[0]));
+    if (window.location.hash.length > 2) {
 
-    columns.push(column().add().appendTo($('#container')[0]));
+        var h = window.location.hash.substring(1);
+        n = h.split('/')[0];
+        $('#project-name')[0].value = n;
+        var cols = h[1].split(';');
+        cols.map(function(c) {
+            var ms = c.split(':');
+            var col = column();
+            columns.push(col);
+            ms.map(function(m) {
+                col.add();
+            });
+        });
+    }
 
     $('#add-column').click(function() {
+        if (!_data) alert('choose a project first');
         columns.push(column().add().appendTo($('#container')[0]));
         document.body.style.width = (columns.length * 600) + 'px';
     });
 
-    $('#start').click(function() {
-        projectWatcher({
-            project: $('#project-name')[0].value,
-            refresh: function(data) {
-                _data = data;
-                data.tiles = data.tiles.map(function(t) {
-                    return 'http://localhost:8889' + t;
-                });
-                columns.map(function(c) {
-                    c.update(data);
-                });
-            }
-        });
+    window.setInterval(function updateHash() {
+        n = $('#project-name')[0].value;
+        var h = n + '/' +
+            columns.map(function(c) {
+            return c.hash();
+        }).join(';');
+        if (h !== window.location.hash) window.location.hash = h;
+    }, 500);
+
+    projectWatcher({
+        refresh: function(data) {
+            _data = data;
+            data.tiles = data.tiles.map(function(t) {
+                return 'http://localhost:8889' + t;
+            });
+        }
     });
 });
