@@ -17,9 +17,8 @@
 </head>
 <body>
   <div id='container'>
-    <div class='controls'>
-    <input type='text' id='project-name' /><button id='start'>load</button>
-    <br />
+    <div class='header'>
+    <select id='project-name'></select>
     <a href='#' id='add-column'>+column</a>
   </div>
   </div>
@@ -33,5 +32,6 @@
     <a href='#'>+place</a>
 </div>
 </script>
+<script id='option' type='text/template'><option value="<%= id %>"><%= name %> (<%= id %>)</option></script>
 </body>
 </html>

@@ -1,42 +1,52 @@
 body {
   font:13px/20px 'Helvetica Neue' sans-serif;
+  color:#444;
 }
 
 .map {
-  width:588px;
-  height:388px;
+  width:488px;
+  height:288px;
   border:1px solid #222;
-  margin:10px 5px;
+  margin:0 5px 10px 5px;
 }
 
 div.column {
-  width:600px;
+  width:500px;
   float:left;
 }
 
-div.controls {
-  padding:5px 10px;
+div.header {
+  background:#eee;
 }
 
 a {
-  color:black;
+  color:#666;
+  padding:1px 3px;
   text-decoration:none;
 }
 
 a:hover {
+  color:#000;
   text-decoration:underline;
 }
 
 .map-number {
-  position:relative;
-  top:0;
-  left:0;
+  position:absolute;
+  top:24px;
+  text-align:center;
+  right:0;
   border:0;
   margin:0;
-  z-index:1000;
-  font-size:40px;
-  line-height:50px;
-  width:40px;
-  background:#000;
-  color:#fff;
+  z-index:2000;
+  font-size:20px;
+  line-height:25px;
+  padding:5px 0;
+  width:48px;
+  background:#fff;
+  color:#444;
+}
+
+select {
+  border:1px solid #eee;
+  background:#fff;
 }

@@ -1,27 +1,29 @@
 a.zoomer {
   text-decoration:none;
   position:absolute;
-  background-color:#000;
-  color:#fff;
-  line-height:25px;
-  font-size:20px;
+  background-color:#fff;
+  font-weight:bold;
+  color:#444;
+  padding:2px;
+  line-height:15px;
+  font-size:15px;
   z-index:99999;
   text-align:center;
-  width:25px;
-  height:25px;
-  top:60px;
+  width:20px;
+  height:20px;
+  top:0;
   }
 
   a.zoomin {
-    left:25px;
+    right:24px;
     }
 
   a.zoomout {
-    left:0px;
+    right:0px;
     }
 
   a.zoomdisabled {
-    background-color:#333;
+    background-color:#eee;
     }
 
 
