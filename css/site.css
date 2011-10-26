@@ -1,27 +1,32 @@
 body {
   font:13px/20px 'Helvetica Neue' sans-serif;
-  color:#444;
+  color: white;
+  background: rgb(127,127,127);
 }
 
 .map {
-  width:488px;
+  width: 49%;
   height:288px;
   border:1px solid #222;
   margin:0 5px 10px 5px;
   float: left;
+  height: 46%;
 }
 
 div.column {
-  width:100%;
-  float:left;
+  position: absolute;
+  top: 22px;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 div.header {
-  background:#eee;
+  background: black;
 }
 
 a {
-  color:#666;
+  color: white;
   padding:1px 3px;
   text-decoration:none;
 }
@@ -43,11 +48,12 @@ a:hover {
   line-height:25px;
   padding:5px 0;
   width:48px;
-  background:#fff;
+  background: rgb(127,127,127);
   color:#444;
 }
 
 select {
-  border:1px solid #eee;
-  background:#fff;
+  border: 1px solid black;
+  background: black;
+  color: white;
 }

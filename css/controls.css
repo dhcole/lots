@@ -1,7 +1,7 @@
 a.zoomer {
   text-decoration:none;
   position:absolute;
-  background-color:#fff;
+  background-color:rgb(127,127,127);
   font-weight:bold;
   color:#444;
   padding:2px;
@@ -23,7 +23,7 @@ a.zoomer {
     }
 
   a.zoomdisabled {
-    background-color:#eee;
+    background-color:rbg(110,110,110);
     }
 
 
